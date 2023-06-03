@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-print(os.getenv('REDIS_URL'))
 app = FastAPI()
 
 app.add_middleware(
@@ -29,7 +28,6 @@ async def read_root(payload: dict = Body(...)):
     animal = payload['animal']
     session = payload['sessionId']
     res = chat.new_query(animal, session)
-    print(res)
     return {"story": res}
 
 
@@ -38,7 +36,6 @@ async def read_root(payload: dict = Body(...)):
     animals = payload['animals']
     session = payload['sessionId']
     res = chat.new_query_animals(animals, session)
-    print(res)
     return {"story": res}
 
 
@@ -47,5 +44,4 @@ async def read_root(payload: dict = Body(...)):
     question = payload['question']
     session = payload['sessionId']
     res = chat.new_query_question(question, session)
-    print(res)
     return {"story": res}
